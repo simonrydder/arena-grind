@@ -1,6 +1,7 @@
 import streamlit as st
 
 from ui.callbacks.click import toggle_load_game_component, toggle_new_game_component
+from ui.components.load_game import load_game_component
 from ui.components.new_game import new_game_component
 from ui.state import APP_STATE
 
@@ -34,5 +35,4 @@ st.button(
 )
 if APP_STATE.show_load:
     with st.container(border=True):
-        st.subheader("Load a Saved Game")
-        st.text_input("Enter save name or path", key="load_game_ref")
+        load_game_component()
