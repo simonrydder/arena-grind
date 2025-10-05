@@ -1,0 +1,36 @@
+{
+  "name": "My Perfect Game",
+  "players": [
+    {
+      "name": "Eskild",
+      "score": 8,
+      "team": 1
+    },
+    {
+      "name": "HH",
+      "score": 8,
+      "team": 1
+    },
+    {
+      "name": "Simon",
+      "score": 7,
+      "team": 2
+    },
+    {
+      "name": "Denze",
+      "score": 7,
+      "team": 2
+    },
+    {
+      "name": "Alex",
+      "score": 6,
+      "team": 3
+    },
+    {
+      "name": "Peter",
+      "score": 6,
+      "team": 3
+    }
+  ],
+  "round": 1
+}
