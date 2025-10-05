@@ -10,9 +10,15 @@ from ui.state import APP_STATE
 def toggle_new_game_component():
     APP_STATE.show_new = not APP_STATE.show_new
 
+    if APP_STATE.show_new:
+        APP_STATE.show_load = False
+
 
 def toggle_load_game_component():
     APP_STATE.show_load = not APP_STATE.show_load
+
+    if APP_STATE.show_load:
+        APP_STATE.show_new = False
 
 
 def create_new_game():
