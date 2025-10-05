@@ -25,7 +25,7 @@ class State:
         return st.session_state.get("game", None)
 
     @game.setter
-    def game(self, v: Game) -> None:
+    def game(self, v: Game | None) -> None:
         st.session_state["game"] = v
 
     @property

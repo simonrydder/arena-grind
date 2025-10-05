@@ -7,6 +7,7 @@ from models.game import Game
 from services.storage import save
 from ui.components.round_logic import apply_round_results, ensure_teams_allocated_once
 from ui.components.validation import validate_placements
+from ui.state import APP_STATE
 
 
 def inject_button_css() -> None:
@@ -61,5 +62,6 @@ def render_controls(game: Game, home_page_path: str = "ui/pages/home.py") -> Non
         except Exception as e:
             st.error(f"Save failed: {e}")
         st.switch_page(home_page_path)
+        APP_STATE.game = None
 
     st.markdown("</div>", unsafe_allow_html=True)
