@@ -2,6 +2,7 @@ from collections import defaultdict
 
 from models.game import Game
 from models.player import Player
+from stategies.allocate_teams import _ALLOCATE_TEAMS_REGISTRY
 
 
 def update_team_score(game: Game, team: int, placement: int) -> None:
@@ -24,5 +25,12 @@ def get_teams(game: Game) -> dict[int, list[Player]]:
 
 
 def allocate_teams(game: Game) -> None:
-    for i, player in enumerate(game.players):
-        player.team = (i // 2) + 1
+    """Dispatch to the chosen team allocation strategy."""
+    key = getattr(game, "team_allocation_method", "fixed")
+    try:
+        fn = _ALLOCATE_TEAMS_REGISTRY[key]
+    except KeyError:
+        raise ValueError(
+            f"Unknown team allocation method: {key!r}. Available: {sorted(_ALLOCATE_TEAMS_REGISTRY)}"
+        )
+    fn(game)
