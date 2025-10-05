@@ -26,7 +26,7 @@ def _new_game_players_component(max_players: int, num_cols: int) -> None:
     st.subheader("Players")
     cols = st.columns(num_cols)
     for i in range(max_players):
-        col = cols[i % num_cols]
+        col = cols[i // num_cols]
         with col:
             _new_player_component(i)
 
