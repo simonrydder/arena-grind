@@ -10,3 +10,4 @@ class Game:
     players: list[Player]
     round: int = 0
     created_at: datetime = field(default_factory=datetime.now)
+    team_allocation_method: str = "fixed"
