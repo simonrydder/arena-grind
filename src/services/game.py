@@ -7,7 +7,7 @@ from models.player import Player
 def update_team_score(game: Game, team: int, placement: int) -> None:
     for player in game.players:
         if player.team == team:
-            player.score += placement
+            player.score += 9 - placement
 
 
 def get_scoreboard(game: Game) -> list[Player]:
@@ -25,4 +25,4 @@ def get_teams(game: Game) -> dict[int, list[Player]]:
 
 def allocate_teams(game: Game) -> None:
     for i, player in enumerate(game.players):
-        player.team = (i % 2) + 1
+        player.team = (i // 2) + 1
