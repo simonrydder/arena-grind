@@ -4,6 +4,9 @@ from ui.callbacks.click import toggle_load_game_component, toggle_new_game_compo
 from ui.components.new_game import new_game_component
 from ui.state import APP_STATE
 
+st.set_page_config(layout="centered")
+
+
 st.title("Welcome To Arena Grind")
 st.caption("Hail warriors! Let the beat of war drums spur you to action!")
 
