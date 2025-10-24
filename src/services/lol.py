@@ -36,6 +36,14 @@ def get_raw_champion_data(url: str) -> LolDataDragon:
     return dd
 
 
+def fetch_champion_data() -> list[ChampionDragon]:
+    versions = fetch_versions()
+    latest = get_latest_version(versions)
+    url = get_data_url(latest, Language.US)
+    data_dragon = get_raw_champion_data(url)
+    return get_champion_data(data_dragon)
+
+
 def get_champion_data(data_dragon: LolDataDragon) -> list[ChampionDragon]:
     return list(data_dragon.data.values())
 

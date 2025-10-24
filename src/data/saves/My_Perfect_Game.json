@@ -3,34 +3,36 @@
   "players": [
     {
       "name": "Eskild",
-      "score": 8,
+      "score": 10,
       "team": 1
     },
     {
       "name": "HH",
-      "score": 8,
+      "score": 10,
       "team": 1
     },
     {
       "name": "Simon",
-      "score": 7,
+      "score": 23,
       "team": 2
     },
     {
       "name": "Denze",
-      "score": 7,
+      "score": 23,
       "team": 2
     },
     {
       "name": "Alex",
-      "score": 6,
+      "score": 13,
       "team": 3
     },
     {
       "name": "Peter",
-      "score": 6,
+      "score": 13,
       "team": 3
     }
   ],
-  "round": 1
+  "round": 3,
+  "created_at": "2025-10-05T18:52:47.874791",
+  "team_allocation_method": "fixed"
 }

@@ -1,5 +1,3 @@
-import re
-
 import streamlit as st
 
 from models.game import Game
@@ -32,13 +30,18 @@ def create_new_game():
 
 
 def _search_player_names() -> list[str]:
-    player_names = []
-    for key in st.session_state.keys():
-        if re.match(pattern=r"player_\d+_name", string=str(key)):
-            name = st.session_state.get(key, None)
-            if name:
-                player_names.append(name)
-    return player_names
+    # keep only keys like player_<num>_name
+    player_keys = [
+        k
+        for k in st.session_state.keys()
+        if isinstance(k, str) and k.startswith("player_") and k.endswith("_name")
+    ]
+
+    # sort numerically by the <num> part
+    player_keys.sort(key=lambda k: int(k.split("_")[1]))
+
+    # collect non-empty names
+    return [st.session_state[k] for k in player_keys if st.session_state.get(k)]
 
 
 def get_players() -> list[Player]:

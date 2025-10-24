@@ -1,5 +1,8 @@
+from typing import Iterator, Sequence
+
 import streamlit as st
 
+from models.champion import Champion
 from models.game import Game
 
 
@@ -35,6 +38,30 @@ class State:
     @active_page.setter
     def active_page(self, v: str) -> None:
         st.session_state["active_page"] = v
+
+    @property
+    def champions(self) -> Sequence[Champion] | None:
+        return st.session_state.get("champions", None)
+
+    @champions.setter
+    def champions(self, v: Sequence[Champion] | None) -> None:
+        st.session_state["champions"] = v
+
+    @property
+    def tag(self) -> str | None:
+        return st.session_state.get("tag", None)
+
+    @tag.setter
+    def tag(self, v: str | None) -> None:
+        st.session_state["tag"] = v
+
+    @property
+    def tag_iterator(self) -> Iterator[tuple[Sequence[Champion], str]] | None:
+        return st.session_state.get("tag_iterator", None)
+
+    @tag_iterator.setter
+    def tag_iterator(self, v: Iterator[tuple[Sequence[Champion], str]] | None) -> None:
+        st.session_state["tag_iterator"] = v
 
 
 APP_STATE = State()

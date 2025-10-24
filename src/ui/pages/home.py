@@ -5,7 +5,7 @@ from ui.components.load_game import load_game_component
 from ui.components.new_game import new_game_component
 from ui.state import APP_STATE
 
-st.set_page_config(layout="centered")
+st.set_page_config(page_title="Arena Grind", layout="centered")
 
 
 st.title("Welcome To Arena Grind")

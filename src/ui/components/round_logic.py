@@ -7,6 +7,7 @@ from models.game import Game
 from services.game import allocate_teams, update_team_score
 from ui.components.team_viewer import placement_key
 from ui.components.validation import iter_team_numbers
+from ui.state import APP_STATE
 
 
 def ensure_round_attr(game: Game) -> None:
@@ -34,3 +35,6 @@ def apply_round_results(game: Game) -> None:
         placement = int(st.session_state.get(placement_key(team_no, game), "0"))
         update_team_score(game, team_no, placement)
     game.round += 1
+
+    APP_STATE.champions = None
+    APP_STATE.tag = None

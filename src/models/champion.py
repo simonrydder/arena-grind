@@ -7,3 +7,6 @@ class Champion:
     available: bool
     image_url: str
     tags: list[str]
+
+    def __repr__(self) -> str:
+        return self.name

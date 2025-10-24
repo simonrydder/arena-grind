@@ -36,6 +36,7 @@ def inject_team_css() -> None:
 
 def render_team_viewers(game: Game) -> None:
     teams = get_teams(game)  # {team_no: [Player, ...]}
+    print(teams)
     for team_no, players in sorted(teams.items(), key=lambda kv: kv[0]):
         name1 = players[0].name if len(players) > 0 else "—"
         name2 = players[1].name if len(players) > 1 else "—"
