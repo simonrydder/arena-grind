@@ -21,7 +21,6 @@ def champion_view(columns: int = 12) -> None:
     APP_STATE.champions = champions
     APP_STATE.tag = tag
 
-    print(APP_STATE.champions)
     disabled_count = sum(1 for c in APP_STATE.champions if not c.available)
     expander_label = (
         f"Disable Champions ({disabled_count})"
