@@ -50,3 +50,16 @@ def get_champions(game: Game) -> Iterator[tuple[Sequence[Champion], str]]:
         )
 
     return fn(game)
+
+
+def get_unique_tags(game: Game) -> set[str]:
+    tags = set[str]()
+    for champ in game.champions:
+        for tag in champ.tags:
+            tags.add(tag)
+
+    return tags
+
+
+def get_champions_by_tag(game: Game, tag: str) -> list[Champion]:
+    return [c for c in game.champions if tag in c.tags]

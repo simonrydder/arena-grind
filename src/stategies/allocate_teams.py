@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import random
-from typing import Callable, Dict, Protocol
+from typing import Callable, Dict, Protocol, Sequence
+
+from attr import dataclass
 
 from models.game import Game
 from models.player import Player
@@ -43,3 +45,48 @@ def alloc_random(game: Game) -> None:
 @register_team_allocator("balanced")
 def alloc_balanced_by_score(game: Game) -> None:
     alloc_random(game)
+
+
+@dataclass
+class TeamCombinations:
+    combinations: list[list[tuple[Player, Player]]] | None = None
+
+    def generate_unique_team_layouts(
+        self,
+        players: Sequence[Player],
+    ) -> None:
+        n = len(players)
+        assert n % 2 == 0, "Number of players must be even"
+
+        # Round-robin pairing algorithm
+        players = list(players)
+        layouts = []
+
+        for _ in range(n - 1):
+            pairs = [(players[i], players[-i - 1]) for i in range(n // 2)]
+            layouts.append(pairs)
+            players = [players[0]] + players[-1:] + players[1:-1]
+
+        self.combinations = layouts
+
+
+tc = TeamCombinations()
+
+
+@register_team_allocator("rolling")
+def alloc_rolling(game: Game) -> None:
+    if tc.combinations is None:
+        players = game.players
+        random.shuffle(players)
+        game.players = players
+        tc.generate_unique_team_layouts(game.players)
+
+    assert tc.combinations is not None
+    combination = tc.combinations.pop(0)
+
+    if not tc.combinations:
+        tc.combinations = None  # Reset for next time
+
+    for team, (p1, p2) in enumerate(combination, start=1):
+        p1.team = team
+        p2.team = team

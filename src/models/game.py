@@ -16,7 +16,7 @@ class Game:
         default_factory=lambda: [create_champion(c) for c in fetch_champion_data()]
     )
     created_at: datetime = field(default_factory=datetime.now)
-    team_allocation_method: str = "random"
+    team_allocation_method: str = "rolling"
     champion_selection_method: str = "tags"
 
     def __repr__(self) -> str:
